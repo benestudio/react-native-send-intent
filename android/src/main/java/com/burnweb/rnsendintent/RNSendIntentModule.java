@@ -70,7 +70,7 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
       //Needs permission "android.permission.CALL_PHONE"
       Intent sendIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumberString.trim()));
       sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+      sendIntent.setPackage("com.android.server.telecom");
       //Check that an app exists to receive the intent
       if (sendIntent.resolveActivity(this.reactContext.getPackageManager()) != null) {
         try {
@@ -87,7 +87,7 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
     public void sendPhoneDial(String phoneNumberString) {
       Intent sendIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumberString.trim()));
       sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+      sendIntent.setPackage("com.android.server.telecom");
       //Check that an app exists to receive the intent
       if (sendIntent.resolveActivity(this.reactContext.getPackageManager()) != null) {
         this.reactContext.startActivity(sendIntent);
